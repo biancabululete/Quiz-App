@@ -1,0 +1,48 @@
+# === GLOBAL ===
+.env
+.env.*.local
+.DS_Store
+Thumbs.db
+*.log
+
+# === NODE / FRONTEND ===
+frontend/node_modules/
+frontend/dist/
+frontend/.next/
+frontend/.turbo/
+frontend/.vite/
+
+# Lock files
+frontend/package-lock.json
+frontend/yarn.lock
+frontend/pnpm-lock.yaml
+
+# Build outputs
+frontend/build/
+frontend/out/
+
+# Misc
+frontend/.eslintcache
+frontend/coverage/
+
+# === PYTHON / BACKEND ===
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+backend/.venv/
+backend/venv/
+backend/.mypy_cache/
+backend/.pytest_cache/
+backend/.idea/
+backend/.vscode/
+
+# Env
+backend/.env
+backend/.env.*
+
+# === ROOT ===
+node_modules/
+.vscode/
+.idea/
