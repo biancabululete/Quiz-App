@@ -19,7 +19,7 @@ export default function QuizRezultat() {
       </p>
 
       <div className="flex gap-4 mt-6">
-        <Button onClick={() => navigate("/")}>Înapoi la Acasă</Button>
+        <Button onClick={() => navigate("/dashboard")}>Mergi la Dashboard</Button>
         <Button onClick={() => navigate("/quiz-grila")}>Refă testul</Button>
       </div>
     </div>

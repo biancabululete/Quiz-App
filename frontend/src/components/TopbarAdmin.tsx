@@ -1,32 +1,29 @@
 import { useState, useEffect } from "react";
-import { Home, User, BarChart2, Settings, FileQuestion } from "lucide-react";
+import { BarChart2, FilePlus2, Home, Settings, User } from "lucide-react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { ReactComponent as Logo } from "../components/logo/logoSimplu.svg";
-import { useUser } from "./UserContext"; // import contextul userului
 
-export default function Topbar() {
+export default function TopbarAdmin() {
   const navigate = useNavigate();
   const location = useLocation();
-  const { user } = useUser(); // ia userul din context
   const [active, setActive] = useState("");
 
-  // Marchează ce e activ în meniu
   useEffect(() => {
     switch (location.pathname) {
       case "/":
         setActive("Acasă");
         break;
-      case "/profil":
-        setActive("Profil");
+      case "/profesor-dashboard":
+        setActive("Panou");
         break;
-      case "/dashboard":
-        setActive("Dashboard");
+      case "/creeaza-quiz":
+        setActive("Creare");
         break;
       case "/setari":
         setActive("Setări");
         break;
-      case "/quiz":
-        setActive("Quiz");
+      case "/profil":
+        setActive("Profil");
         break;
       default:
         setActive("");
@@ -38,24 +35,25 @@ export default function Topbar() {
       <div className="flex items-center">
         <Logo className="h-16 w-auto text-crem" />
       </div>
+
       <nav className="flex gap-6">
-        <NavItem
+         <NavItem
           icon={<Home size={24} />}
           label="Acasă"
           active={active === "Acasă"}
           onClick={() => navigate("/")}
         />
         <NavItem
-          icon={<FileQuestion size={24} />}
-          label="Quiz"
-          active={active === "Quiz"}
-          onClick={() => navigate("/quiz")}
+          icon={<BarChart2 size={24} />}
+          label="Panou"
+          active={active === "Panou"}
+          onClick={() => navigate("/profesor-dashboard")}
         />
         <NavItem
-          icon={<BarChart2 size={24} />}
-          label="Dashboard"
-          active={active === "Dashboard"}
-          onClick={() => navigate("/dashboard")}
+          icon={<FilePlus2 size={24} />}
+          label="Creare"
+          active={active === "Creare"}
+          onClick={() => navigate("/creeaza-quiz")}
         />
         <NavItem
           icon={<Settings size={24} />}
@@ -74,18 +72,19 @@ export default function Topbar() {
   );
 }
 
-// Componentele NavItem rămân la fel
+type NavItemProps = {
+  icon: React.ReactNode;
+  label: string;
+  active?: boolean;
+  onClick?: () => void;
+};
+
 function NavItem({
   icon,
   label,
   active,
   onClick,
-}: {
-  icon: React.ReactNode;
-  label: string;
-  active: boolean;
-  onClick: () => void;
-}) {
+}: NavItemProps) {
   return (
     <div
       onClick={onClick}
@@ -100,7 +99,6 @@ function NavItem({
       >
         {icon}
       </div>
-      {/* Eticheta – dispare dacă e activ */}
       <span
         className={`text-xs mt-1 transition-all duration-500 ${
           active ? "opacity-0 h-0" : "opacity-100 h-auto"
