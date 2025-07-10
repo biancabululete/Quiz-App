@@ -123,7 +123,7 @@ const handleFinalSubmit = async () => {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        quiz_id: quizGenerat.quiz_id,
+        quiz_id: quizId,
         user_id: user.id,
         score: scorFinal,
       }),

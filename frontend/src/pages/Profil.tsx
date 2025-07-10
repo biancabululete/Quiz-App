@@ -19,7 +19,7 @@ export default function Profil() {
     const parsed = stored ? JSON.parse(stored) : null;
     setUser(parsed);
 
-    // 🔄 dacă ne întoarcem de la Stripe și avem un checkout de succes
+    //  dacă ne întoarcem de la Stripe și avem un checkout de succes
     const query = new URLSearchParams(location.search);
     const isSuccess = query.get("checkout") === "success";
 
@@ -80,11 +80,18 @@ const handleDowngrade = async () => {
     });
 
     if (res.ok) {
-      const updatedUser = await fetch(`http://localhost:8000/api/users/${user.id}`).then(r => r.json());
-      localStorage.setItem("user", JSON.stringify(updatedUser));
-      setUser(updatedUser);
-      alert("Abonamentul a fost anulat cu succes.");
-    } else {
+    const updatedData = await fetch(`http://localhost:8000/api/users/${user.id}`).then(r => r.json());
+    const updatedUser = {
+      ...updatedData,
+      token: user.token,
+      rol: user.rol,
+    };
+
+    localStorage.setItem("user", JSON.stringify(updatedUser));
+    setUser(updatedUser);
+    alert("Abonamentul a fost anulat cu succes.");
+    window.location.reload();
+  } else {
       const data = await res.json();
       alert(data.detail || "Eroare la anularea abonamentului.");
     }
@@ -93,7 +100,6 @@ const handleDowngrade = async () => {
     alert("Eroare rețea.");
   }
 };
-
 
   if (!user) {
     if (!user) {

@@ -65,13 +65,13 @@ def get_all_quizzes_with_scores(db: Session = Depends(get_db)):
         })
     return enriched
 
-@router.post("/quizz/scores", response_model=QuizResultRead)
-def save_quiz_score(result: QuizResultCreate, db: Session = Depends(get_db)):
+@router.post("/quizz/scores")
+def save_quiz_score(result: QuizResultCreate, db: Session = Depends(get_db), user=Depends(get_current_user)):
     new_result = QuizResult(
         quiz_id=result.quiz_id,
-        user_id=result.user_id,
+        user_id=user.id,  # luat din token
         score=result.score,
-        completed_at = datetime.now(timezone.utc)
+        completed_at=datetime.now(timezone.utc)
     )
     db.add(new_result)
     db.commit()
