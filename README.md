@@ -156,7 +156,7 @@ REACT_APP_GOOGLE_CLIENT_ID=xxxxxxxx.apps.googleusercontent.com
 REACT_APP_API_URL=http://localhost:8000
 ```
 
-> ⚠️ Nu commita niciodată fișierele `.env` — adaugă-le în `.gitignore`.
+> ⚠️ Nu da commit niciodată la fișierele `.env` — adaugă-le în `.gitignore`.
 
 ---
 
@@ -251,13 +251,3 @@ Paginile principale (în `frontend/src/pages/`):
 - [ ] Quiz timer (cronometru pe întrebare/total)
 - [ ] Migrare la Vite pentru build mai rapid pe frontend
 - [ ] Internaționalizare (i18n) — momentan UI este în română
-
----
-
-## Licență
-
-Acest proiect este distribuit sub licență MIT. Vezi `LICENSE` pentru detalii.
-
----
-
-*Realizat ca proiect personal pentru a explora integrarea OpenAI API într-o aplicație educațională full-stack.*
